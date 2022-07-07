@@ -1,0 +1,44 @@
+class Solution {
+public:
+   void inorder(TreeNode* root, vector<int> &in){
+        // base case
+        if(root == NULL)
+            return;
+        inorder(root -> left, in);
+        in.push_back(root -> val);
+        inorder(root -> right, in);
+    }
+    
+    vector<int> mergeArrays(vector<int> in1, vector<int> in2){
+        vector<int> result(in1.size() + in2.size());
+        int i = 0; int j = 0; int k = 0;
+        while(i < in1.size() && j < in2.size()){
+            if(in1[i] < in2[j]){
+                result[k++] = in1[i];
+                i++;
+            }
+            else{
+                result[k++] = in2[j];
+                j++;
+            }
+        }
+        while(i < in1.size()){
+            result[k++] = in1[i];
+            i++;
+        }
+        while(j < in2.size()){
+            result[k++] = in2[j];
+            j++;
+        }
+        return result;
+    }
+    
+    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
+        vector<int> in1;
+        vector<int> in2;
+        // step 1: get the inorder of both BST(as inorder of BST is sorted)
+        inorder(root1, in1);
+        inorder(root2, in2);
+        // step 2: merge them
+        return mergeArrays(in1, in2);
+    }
