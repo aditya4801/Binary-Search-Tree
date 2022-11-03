@@ -1,0 +1,38 @@
+Approach 1:
+
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+    TreeNode* temp= root;
+  
+     while(temp!=NULL){
+    
+     if(temp->val== val){
+         return temp;    
+     }
+    
+    if(temp->val > val)
+       temp= temp->left;
+    
+    else(temp->val < val)
+       temp= temp->rigt;
+     }
+    return temp;
+   }
+};
+
+Approach 2 (using recursion):
+
+
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+          if(root== NULL || root->val==val)
+             return root;
+             
+             while(root!=NULL && root->val != val){
+                 root= (root->val < val ? root->right : root->left);
+             }
+             return root;
+      }
+    };
