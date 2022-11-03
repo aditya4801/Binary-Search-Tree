@@ -1,0 +1,27 @@
+class Solution {
+public:
+   
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+         //base case
+         if(preorder.size()==0)
+            return NULL;
+            
+         //inserting the first element of preorder as it will be the node for bst   
+            TreeNode* node= new TreeNode(preorder[0]);
+            
+            vector<int>left;
+            vector<int>right;
+            
+        for(int i=1; i<preorder.size();i++){
+               if(preorder[i]<preorder[0]){
+                  left.push_back(preorder[i]);
+                  }
+               else 
+                  right.push_back(preorder[i]);
+         }
+         node->left= bstFromPreorder(left);
+         node->right= bstFromPreOrder(right);
+         
+         return node;
+      }
+    };
