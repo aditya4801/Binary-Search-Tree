@@ -1,0 +1,13 @@
+class solution{
+public:
+
+bool isBst(TreeNode* root){
+  return solve(root, long MIN_VAL, long  MAX_VAL);
+  }
+  bool solve(TreeNode* root, long min , long max){
+    if(root==NULL)
+      return true;
+      
+    return min < root->left &&  max > root->right && solve(root->left, min, root->val) && solve(root->right, root->val, max);
+  }
+};
