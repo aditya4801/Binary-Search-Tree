@@ -6,10 +6,10 @@ Node* connect(Node* root){
    return NULL;
    
    if(root->left){
-     root->left->left= root->right;
+     root->left->next= root->right;
      
    if(root->next){
-     root->left->next= root->next->left;
+     root->right->next= root->next->left;
     }
     root->left= connect(root->left);
     root->right= connect(root->right);
